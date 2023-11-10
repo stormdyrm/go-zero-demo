@@ -1,0 +1,23 @@
+type Request {
+	Name string `path:"name,options=you|me"`
+}
+
+type Response {
+	Message string `json:"message"`
+}
+
+type RegisterReq {
+	Name     string `json:"name"`
+	Password string `json:"password"`
+}
+
+type RegisterResp {
+	Result bool `json:"result"`
+}
+
+service userApi-api {
+	@handler UserApiHandler
+	get /from/:name (Request) returns (Response);
+	@handler RegisterHandler
+	post /user/register (RegisterReq) returns (RegisterResp)
+}
